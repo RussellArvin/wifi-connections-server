@@ -24,13 +24,13 @@ function main(){
         for(const device of devices){
             if(!locateMAC(device.mac)){//If mac address is not stored on local server memory
                 connections.push({mac:device.mac, date:date}) //Push to array of connections with connection DateTime and IP
-                connectionQuery(device.mac,date,"Connected") //Sending Connection data to Dynamo
+                connectionQuery(device.mac,date,"Connection") //Sending Connection data to Dynamo
             }         
         }
         const toBeDeleted = locateDisconnected(devices); // array of indexes within the connection array that are no longer connected to the network
         if(toBeDeleted.length != 0){
             for(const i of toBeDeleted){
-                connectionQuery(connections[i].mac,date,"Disconnected"); // Sending Connection Data to Dynamo
+                connectionQuery(connections[i].mac,date,"Disconnection"); // Sending Connection Data to Dynamo
                 connections.splice(i,1); //Removing from Connection Array
             }
         }
@@ -42,7 +42,8 @@ function connectionQuery(mac,date,type){
     const obj = {
         id: uuid(),
         mac: mac,
-        info: `${type} at ${date.toString().substring(3,15)} ${formatTime(date)}`
+        info: date.toString(),
+        type: type
     }
 
     const params = {
