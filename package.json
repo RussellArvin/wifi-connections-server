@@ -1,0 +1,18 @@
+{
+  "name": "wifi-notifications",
+  "version": "1.0.0",
+  "description": "Server code for wifi-connection application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BeeAlpha/Russell",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.831.0",
+    "local-devices": "^3.1.0",
+    "node-cron": "^2.0.3",
+    "nodemon": "^2.0.7",
+    "uuid": "^8.3.2"
+  }
+}
