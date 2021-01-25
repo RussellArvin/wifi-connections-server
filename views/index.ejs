@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <title>Wifi Manager</title>
+</head>
+
+<body>
+    <table class="table">
+        <thead>
+            <th>No.</th>
+            <th>Type</th>
+            <th>MAC</th>
+            <th>Date</th>
+        </thead>
+        <tbody>
+        <%
+        var counter = 1;
+        connections.forEach(conn=>{
+            const d = new Date(conn.info);
+            const dString = `${conn.info.substring(3,15)} ${formatTime(d)}`
+        %>
+            <tr>
+                <td><%=counter%></td>
+                <td><%=conn.type%></td>
+                <td><%=conn.mac%></td>
+                <td><%=dString%></td>
+            </tr>
+        <%counter++;
+        })%>
+        </tbody>
+    </table>
+</body>
+
+</html>
+
+<%
+function formatTime(d){
+    var hours = d.getHours();
+    var abbr = "PM"
+    if(d.getHours() >= 12) if(hours != 12) hours -= 12
+    else {
+        if(hours == 0) hours = 12
+        abbr = "AM"
+    }
+    return `${hours}:${("0" + d.getMinutes()).slice(-2)}${abbr}`
+}
+%>

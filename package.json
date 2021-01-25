@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.831.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
     "local-devices": "^3.1.0",
     "node-cron": "^2.0.3",
     "nodemon": "^2.0.7",
